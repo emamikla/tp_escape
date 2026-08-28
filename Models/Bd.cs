@@ -19,13 +19,24 @@ public class BD
         "SELECT * FROM Salas WHERE CodigoSala = @Codigo", new { Codigo = codigo });
     }
 
-    public IEnumerable<Sala> ListarSalasDePartida(int partidaId)
+public void GuardarRespuesta ((int partidaId, int salaId, string respuesta, bool correcta))
 {
-    using var cn = new SqlConnection(_cs);
-    return cn.Query<Sala>(
-        @"SELECT * FROM Salas 
-          WHERE PartidaId = @PartidaId 
-          ORDER BY OrdenSecuencial", 
-        new { PartidaId = partidaId });
+    
+
 }
+
+public Partida ObtenerPartida(HttpContext http)
+{
+    var partidaId = http.Session.GetInt32("PartidaId");
+    if (partidaId == null) return null;
+
+    using var cn = new SqlConnection(_conn);
+    return cn.QueryFirstOrDefault<Partida>(
+        "SELECT Id, SalaActual, NombreParticipante FROM Partidas WHERE Id = @Id",
+        new { Id = partidaId });
+}
+
+
+
+
 }
