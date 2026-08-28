@@ -1,9 +1,10 @@
-public class Respuesta 
-{
-    int ID {set; get;}
-    int ID_Partida {set; get;}
-    int ID_Sala {set; get;}
-    bool ValorRespuesta {set; get;}
-    dateTime FechaHora {set; get;}
+namespace tp_escape.Models;
 
+public class Respuesta
+{
+    public int ID { get; set; }
+    public int ID_Partida { get; set; }
+    public int ID_Sala { get; set; }
+    public bool ValorRespuesta { get; set; }
+    public DateTime FechaHora { get; set; }
 }

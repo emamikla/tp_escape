@@ -1,0 +1,38 @@
+@model tp_escape.Models.JuegoViewModel
+@{
+    ViewData["Title"] = "Sala";
+}
+
+<h2>Partida en curso</h2>
+
+<p><strong>Jugador:</strong> @Model.NombreParticipante</p>
+<p><strong>Sala actual:</strong> @Model.SalaActual</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.Mensaje))
+{
+    <div class="alert @(Model.EsCorrecta ? "alert-success" : "alert-danger")">
+        @Model.Mensaje
+    </div>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h4 class="card-title">Pista</h4>
+        <p class="card-text">@Model.Pista</p>
+    </div>
+</div>
+
+<form asp-controller="Juego" asp-action="IngresarSala" method="post">
+    <input type="hidden" name="nombreParticipante" value="@Model.NombreParticipante" />
+
+    <div class="mb-3">
+        <label class="form-label">Tu respuesta</label>
+        <input type="text" name="respuesta" class="form-control" value="@Model.Respuesta" placeholder="Ingresá el código" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Enviar respuesta</button>
+</form>
+
+<p class="mt-3">
+    <a asp-controller="Juego" asp-action="Index" class="btn btn-link">Volver al inicio</a>
+</p>

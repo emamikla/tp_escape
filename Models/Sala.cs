@@ -1,7 +1,9 @@
-public class Sala 
+namespace tp_escape.Models;
+
+public class Sala
 {
-    int ID {set ; get ;}
-    int Codigo_Sala {set ; get ;}
-    int Orden_Secuencia {set ; get ;}
-    int Partida_ID {set ; get ;}
+    public int ID { get; set; }
+    public int Codigo_Sala { get; set; }
+    public int OrdenSecuencial { get; set; }
+    public int PartidaId { get; set; }
 }
