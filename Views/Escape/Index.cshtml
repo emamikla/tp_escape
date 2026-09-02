@@ -1,0 +1,13 @@
+<header>
+    <title>Escape Game</title>
+</header>
+<main>
+    <div class="container">
+        <h1>Escape Game</h1>
+        <p>Bienvenido al juego de escape. Haz clic en el botón para iniciar la partida.</p>
+        <form action = '@Url.Action("FijarseNombreUsuario" , "Escape")' method="post">
+            <input type = "text" name = "nombreUsuario" placeholder="Ingrese su nombre de usuario" required />
+            <button type="submit">Iniciar Partida</button>
+        </form>
+    </div>
+</main>
