@@ -4,8 +4,8 @@
 <main>
     <div class="container">
         <h1>Escape Game</h1>
-        <p>Bienvenido al juego de escape. Haz clic en el botón para iniciar la partida.</p>
-        <form action = '@Url.Action("FijarseNombreUsuario" , "Escape")' method="post">
+        <p>Bienvenido al juego de escape.Ingrese su nombre de usuario para comenzar. Si ya tienes una partida en curso, podrás continuar desde donde te quedaste al ingresar tu nombre de usuario anterior.</p>
+        <form action = '@Url.Action("FijarseNombreDeUsuario" , "Escape")' method="post">
             <input type = "text" name = "nombreUsuario" placeholder="Ingrese su nombre de usuario" required />
             <button type="submit">Iniciar Partida</button>
         </form>
