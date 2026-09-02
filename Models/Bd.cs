@@ -6,147 +6,72 @@ using Microsoft.Data.SqlClient;
 
 public class BD
 {
-    private readonly string _cs = "Server=(localdb)\\MSSQLLocalDB;Database=Escape;Integrated Security=True;TrustServerCertificate=True;";
+    private string _connectionString = "Server=localhost;Database=Escape;integrated security=true;TrustServerCertificate=True;";
 
-    public Sala ObtenerSalaPorId(int id)
+    public ActualizarSalaActual(int idSala , string nombreUsuario)
     {
-        using var cn = new SqlConnection(_cs);
-        return cn.QueryFirstOrDefault<Sala>(
-            "SELECT * FROM Salas WHERE ID = @Id",
-            new { Id = id });
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            var query = "UPDATE Partidas SET Sala_Actual = @IdSala WHERE Nombre_Usuario = @NombreUsuario";
+            connection.Execute(query, new { IdSala = idSala, NombreUsuario = nombreUsuario });
+        }
     }
-
-    public Sala ObtenerSalaPorCodigo(string codigo)
+    public bool ExisteUsuario(string nombreUsuario)
     {
-        using var cn = new SqlConnection(_cs);
-        return cn.QueryFirstOrDefault<Sala>(
-            "SELECT * FROM Salas WHERE Codigo_Sala = @Codigo",
-            new { Codigo = codigo });
-    }
-
-    public int CrearPartida(string nombreParticipante)
-    {
-        using var cn = new SqlConnection(_cs);
-
-        var ahora = DateTime.Now;
-        var partidaId = cn.QuerySingle<int>(
-            @"INSERT INTO Partidas (Fecha, Hora, ID_Jugador, Estado, Puntuacion)
-              VALUES (@Fecha, @Hora, @IdJugador, @Estado, @Puntuacion);
-              SELECT CAST(SCOPE_IDENTITY() AS int);",
-            new
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            bool existe = false;
+            connection.Open();
+            var query = "SELECT COUNT(*) FROM Partidas WHERE Nombre_Usuario = @NombreUsuario";
+            int count = connection.ExecuteScalar<int>(query, new { NombreUsuario = nombreUsuario });
+            if (count > 0)
             {
-                Fecha = ahora.Date,
-                Hora = ahora.TimeOfDay,
-                IdJugador = 0,
-                Estado = "Activa",
-                Puntuacion = 0m
-            });
-
-        var salasIniciales = new[]
-        {
-            new { Codigo_Sala = 101, OrdenSecuencial = 1, PartidaId = partidaId },
-            new { Codigo_Sala = 202, OrdenSecuencial = 2, PartidaId = partidaId },
-            new { Codigo_Sala = 303, OrdenSecuencial = 3, PartidaId = partidaId }
-        };
-
-        cn.Execute(
-            @"INSERT INTO Salas (Codigo_Sala, OrdenSecuencial, PartidaId)
-              VALUES (@Codigo_Sala, @OrdenSecuencial, @PartidaId)",
-            salasIniciales);
-
-        return partidaId;
-    }
-
-    public Partida ObtenerPartida(HttpContext http)
-    {
-        var partidaId = http.Session.GetInt32("PartidaId");
-        if (partidaId == null) return null;
-
-        using var cn = new SqlConnection(_cs);
-
-        var partida = cn.QueryFirstOrDefault<Partida>(
-            @"SELECT ID as Id, Fecha, Hora, ID_Jugador, Estado, Puntuacion
-              FROM Partidas
-              WHERE ID = @Id",
-            new { Id = partidaId.Value });
-
-        if (partida != null)
-        {
-            partida.NombreParticipante = http.Session.GetString("NombreParticipante");
+                existe = true;
+            }
+            return existe; 
         }
-
-        return partida;
     }
-
-    public Sala? ObtenerSalaActual(int partidaId)
+    public ObtenerSalaActual(string nombreUsuario)
     {
-        using var cn = new SqlConnection(_cs);
-
-        return cn.QueryFirstOrDefault<Sala>(
-            @"SELECT *
-              FROM Salas
-              WHERE PartidaId = @PartidaId
-              ORDER BY OrdenSecuencial ASC",
-            new { PartidaId = partidaId });
-    }
-
-    public Sala? ObtenerSiguienteSala(int partidaId, int ordenActual)
-    {
-        using var cn = new SqlConnection(_cs);
-
-        return cn.QueryFirstOrDefault<Sala>(
-            @"SELECT TOP 1 *
-              FROM Salas
-              WHERE PartidaId = @PartidaId
-                AND OrdenSecuencial > @OrdenActual
-              ORDER BY OrdenSecuencial ASC",
-            new { PartidaId = partidaId, OrdenActual = ordenActual });
-    }
-
-    public void GuardarRespuesta(int partidaId, int salaId, string respuesta, bool correcta)
-    {
-        using var cn = new SqlConnection(_cs);
-
-        cn.Execute(
-            @"INSERT INTO Respuestas (ID_Partida, Id_Sala, ValorRespuesta, FechaHora)
-              VALUES (@PartidaId, @SalaId, @ValorRespuesta, @FechaHora)",
-            new
-            {
-                PartidaId = partidaId,
-                SalaId = salaId,
-                ValorRespuesta = correcta,
-                FechaHora = DateTime.Now
-            });
-    }
-
-    public void ActualizarSalaActual(int partidaId, int nuevaSalaId)
-    {
-        using var cn = new SqlConnection(_cs);
-
-        var sala = cn.QueryFirstOrDefault<Sala>(
-            "SELECT * FROM Salas WHERE ID = @Id",
-            new { Id = nuevaSalaId });
-
-        if (sala == null)
+        using (var connection = new SqlConnection(_connectionString))
         {
-            return;
+            connection.Open();
+            var query = "SELECT Sala_Actual FROM Partidas WHERE Nombre_Usuario = @NombreUsuario";
+            int salaActual = connection.ExecuteScalar<int>(query, new { NombreUsuario = nombreUsuario });
+            return salaActual;
         }
-
-        cn.Execute(
-            @"UPDATE Partidas
-              SET Estado = @Estado
-              WHERE ID = @Id",
-            new { Id = partidaId, Estado = $"Sala {sala.Codigo_Sala}" });
     }
 
-    public bool ValidarRespuesta(int salaId, string respuesta)
+    public GuardarRespuesta(string nombreUsuario, int idSala, bool valorRespuesta)
     {
-        var sala = ObtenerSalaPorId(salaId);
-        if (sala == null)
+        using (var connection = new SqlConnection(_connectionString))
         {
-            return false;
+            connection.Open();
+            var query = "INSERT INTO Respuestas (Nombre_Usuario, Id_Sala, ValorRespuesta, FechaHora) VALUES (@NombreUsuario, @IdSala, @ValorRespuesta, @FechaHora)";
+            connection.Execute(query, new { NombreUsuario = nombreUsuario, IdSala = idSala, ValorRespuesta = valorRespuesta, FechaHora = DateTime.Now });
         }
-
-        return sala.Codigo_Sala.ToString() == (respuesta ?? string.Empty).Trim();
     }
+
+    public CrearPartida(string nombreUsuario , int idSala)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            var query = "INSERT INTO Partidas (Nombre_Usuario, Sala_Actual) VALUES (@NombreUsuario, @SalaActual)";
+            connection.Execute(query, new { NombreUsuario = nombreUsuario, SalaActual = idSala });
+        }
+    }
+
+    public string ObtenerCodigoSala(int idSala)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            var query = "SELECT Codigo FROM Salas WHERE Id = @IdSala";
+            var codigo = connection.QuerySingleOrDefault<string>(query, new { IdSala = idSala });
+            return codigo;
+        }
+    }
+
 }
