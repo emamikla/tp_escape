@@ -17,16 +17,16 @@ public class EscapeController : Controller
         if (bd.ExisteUsuario(nombreUsuario) == true)
         {
             int salaActual = bd.ObtenerSalaActual(nombreUsuario);
-            return RedirectToAction("Sala" + salaActual, new { nombreUsuario = nombreUsuario });
+            return RedirectToAction("Nivel" + salaActual, new { nombreUsuario = nombreUsuario });
         }
         else
         {
             bd.CrearPartida(nombreUsuario, 1);
-            return RedirectToAction("Sala1", new { nombreUsuario = nombreUsuario });
+            return RedirectToAction("Nivel1", new { nombreUsuario = nombreUsuario });
         }
 
     }
 
-    
+
 }
 
