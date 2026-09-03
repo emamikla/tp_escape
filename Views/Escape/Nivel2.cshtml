@@ -1,0 +1,13 @@
+<header>
+    <title>Escape Game - Nivel 2</title>
+</header>
+<main>
+    <p>Bienvenidos al Kildare Country Surf Shop, donde podes comprar cualquier cosa que necesites para disfrutar del surf. En la imagen de abajo vas a encontrar letras , encontra la combinación correcta y pasa a la siguiente sala. </p>
+    <img src="IMG1" alt="Imagen 1">
+   <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
+        <input type="hidden" name="sala" value="2" />
+        <label for="respuesta">Ingrese la combinación correcta:</label>
+        <input type="text" id="respuesta" name="respuesta" required>
+        <button type="submit">Enviar</button>
+    </form>
+</main>
