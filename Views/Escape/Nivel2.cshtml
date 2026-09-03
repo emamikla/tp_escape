@@ -6,8 +6,13 @@
     <img src="IMG1" alt="Imagen 1">
    <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
         <input type="hidden" name="sala" value="2" />
+        <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
         <label for="respuesta">Ingrese la combinación correcta:</label>
         <input type="text" id="respuesta" name="respuesta" required>
         <button type="submit">Enviar</button>
+        @if (ViewBag.Error != null)
+        {
+            <p style="color: red;">@ViewBag.Error</p>
+        }
     </form>
 </main>

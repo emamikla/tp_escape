@@ -18,37 +18,37 @@ public class EscapeController : Controller
         if (bd.ExisteUsuario(nombreUsuario) == true)
         {
             int salaActual = bd.ObtenerSalaActual(nombreUsuario);
-            return RedirectToAction("Nivel" + salaActual, new { nombreUsuario = nombreUsuario });
+            ViewBag.NombreUsuario = nombreUsuario;
+            return RedirectToAction("Nivel" + salaActual);
         }
         else
         {
             bd.CrearPartida(nombreUsuario, 1);
-            return RedirectToAction("Nivel1", new { nombreUsuario = nombreUsuario });
+            ViewBag.NombreUsuario = nombreUsuario;
+            return RedirectToAction("Nivel1");
         }
 
     }
 
-    public IActionResult FijarRespuesta(string nombreUsuario, string respuesta, int sala)
+    public IActionResult FijarRespuesta(string respuesta , int sala , string nombreUsuario)
     {
-        // Obtener el código esperado para la sala
-        var codigo = bd.ObtenerCodigoSala(sala);
-        bool correcto = string.Equals((respuesta ?? string.Empty).Trim(), codigo, StringComparison.OrdinalIgnoreCase);
-
-        // Guardar la respuesta en la BD
-        bd.GuardarRespuesta(nombreUsuario, sala, correcto);
-
-        if (correcto)
+        if (bd.VerificarRespuesta(sala, respuesta) == true)
         {
-            // Avanzar a la siguiente sala
-            bd.ActualizarSalaActual(sala + 1, nombreUsuario);
-            return RedirectToAction("Nivel" + (sala + 1), new { nombreUsuario = nombreUsuario });
+            bd.ActualizarSala(nombreUsuario, sala + 1);
+            ViewBag.NombreUsuario = nombreUsuario;
+            return RedirectToAction("Nivel" + (sala + 1));
         }
         else
         {
-            // Volver a la misma sala si la respuesta es incorrecta
-            return RedirectToAction("Nivel" + sala, new { nombreUsuario = nombreUsuario });
+            ViewBag.NombreUsuario = nombreUsuario;
+            ViewBag.Error = "Respuesta incorrecta. Intenta de nuevo.";
+            return RedirectToAction("Nivel" + sala);
         }
     }
+
+    
+    
+
 
 }
 
