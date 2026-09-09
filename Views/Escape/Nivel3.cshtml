@@ -1,4 +1,18 @@
 <h2>Nivel 3</h2>
 
 <p>Encontramos un diccionario viejo en la casa de Ward Cameron junto con una carta vieja de Denmark Tanny. Ayudanos a traducirla y encontrar la combinación correcta para poder salir de esta sala. </p>
-     <img src="img2" alt="Imagen 2">
+     
+<img src="img2" alt="Imagen 2">
+
+<form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
+     <input type="hidden" name="sala" value="3" />
+     <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
+     <label for="respuesta">Ingresá la traducción correcta:</label>
+     <input type="text" id="respuesta" name="respuesta" required>
+     <button type="submit">Enviar</button>
+     
+     @if (ViewBag.Error != null)
+     {
+          <p style="color: red;">@ViewBag.Error</p>
+     }
+</form>

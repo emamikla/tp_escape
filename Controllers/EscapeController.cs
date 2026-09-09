@@ -46,6 +46,12 @@ public class EscapeController : Controller
             ViewBag.NombreUsuario = nombreUsuario;
             return RedirectToAction("Nivel" + (sala + 1));
         }
+        else if(sala == 4)
+        {
+            bd.ActualizarSalaActual(sala + 1, nombreUsuario);
+            ViewBag.NombreUsuario = nombreUsuario;
+            return RedirectToAction("Nivel" + (sala + 1));
+        }
         else
         {
             ViewBag.NombreUsuario = nombreUsuario;

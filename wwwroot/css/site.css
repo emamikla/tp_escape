@@ -29,5 +29,11 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.layout {
+  width: 100%;
 
-.index
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fill, 250px);
+  gap: 10px;
+}
