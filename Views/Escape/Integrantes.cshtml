@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Integrantes";
+}
+
+<div class="integrantes-title">
+        <h1>Nuestro Equipo</h1>
+        <p>Conoce a los integrantes que hacen posible este Escape Game</p>
+</div>
+
+    <section class="integrantes-grid">
+        <!-- Integrante 1 -->
+        <div class="integrante-card">
+            <img src="~/images/integrantes/integrante1.jpg" alt="Integrante 1" class="integrante-imagen" />
+            <div class="integrante-info">
+                <div class="integrante-nombre">Julieta romano</div>
+                <div class="integrante-rol">Desarrolladora</div>
+                <div class="integrante-descripcion">Backend y Base de Datos</div>
+            </div>
+        </div>
+
+        <!-- Integrante 2 -->
+        <div class="integrante-card">
+            <img src="~/images/integrantes/integrante2.jpg" alt="Integrante 2" class="integrante-imagen" />
+            <div class="integrante-info">
+                <div class="integrante-nombre">Jazmín Han</div>
+                <div class="integrante-rol">Desarrolladora</div>
+                <div class="integrante-descripcion">Team leader</div>
+            </div>
+        </div>
+
+        <!-- Integrante 3 -->
+        <div class="integrante-card">
+            <img src="~/images/integrantes/integrante3.jpg" alt="Integrante 3" class="integrante-imagen" />
+            <div class="integrante-info">
+                <div class="integrante-nombre">Emanuel Miklaski</div>
+                <div class="integrante-rol">Desarrollador</div>
+                <div class="integrante-descripcion">Fullstack developer</div>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align: center;">
+        <a href="@Url.Action("Index", "Escape")" class="btn btn-primary" style="padding: 10px 30px; font-size: 1.1em;">
+            Volver al Inicio
+        </a>
+    </div>
+

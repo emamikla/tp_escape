@@ -12,6 +12,14 @@ public class EscapeController : Controller
     {
         return View();
     }
+    public IActionResult Tutorial()
+    {
+        return View();
+    }
+    public IActionResult Integrantes()
+    {
+        return View();
+    }
 
     public IActionResult FijarseNombreDeUsuario (string nombreUsuario)
     {
