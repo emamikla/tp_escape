@@ -42,7 +42,7 @@ public class EscapeController : Controller
     {
         if (bd.VerificarRespuesta(sala, respuesta) == true)
         {
-            bd.ActualizarSala(nombreUsuario, sala + 1);
+            bd.ActualizarSalaActual(sala + 1, nombreUsuario);
             ViewBag.NombreUsuario = nombreUsuario;
             return RedirectToAction("Nivel" + (sala + 1));
         }
