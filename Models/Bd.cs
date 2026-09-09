@@ -8,7 +8,7 @@ public class BD
 {
     private string _connectionString = "Server=localhost;Database=Escape;integrated security=true;TrustServerCertificate=True;";
 
-    public ActualizarSalaActual(int idSala , string nombreUsuario)
+    public void ActualizarSalaActual(int idSala , string nombreUsuario)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
@@ -32,7 +32,7 @@ public class BD
             return existe; 
         }
     }
-    public ObtenerSalaActual(string nombreUsuario)
+    public int ObtenerSalaActual(string nombreUsuario)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
@@ -43,7 +43,7 @@ public class BD
         }
     }
 
-    public GuardarRespuesta(string nombreUsuario, int idSala, bool valorRespuesta)
+    public void GuardarRespuesta(string nombreUsuario, int idSala, bool valorRespuesta)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
@@ -53,7 +53,7 @@ public class BD
         }
     }
 
-    public CrearPartida(string nombreUsuario , int idSala)
+    public void CrearPartida(string nombreUsuario , int idSala)
     {
         using (var connection = new SqlConnection(_connectionString))
         {
