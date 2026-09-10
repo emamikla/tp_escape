@@ -1,23 +1,42 @@
-<h2>YA NO QUEDA NADA! Ya llegamos al escondite final!</h2>
-<p>En la entrada hay un código secreto con preguntas que debemos completar, ayudanos</p>
+<h2>Nivel 4 - El Rosco de Outer Banks</h2>
+<p>Antes de seguir, los Pogues te ponen a prueba: respondé el rosco. Cada pista empieza con la letra indicada.
+   Necesitás al menos <strong>@ViewBag.Umbral de @ViewBag.Total</strong> aciertos para conseguir la combinación de esta sala.
+   Si no sabés una palabra, dejá el campo vacío y seguí con la siguiente.</p>
 
-<iframe allow="fullscreen; autoplay; allow-top-navigation-by-user-activation" allowfullscreen width="795" height="690" frameborder="0" src="https://es.educaplay.com/juego/30455867-outer_banks.html"></iframe>
+@if (ViewBag.RoscoMensaje != null)
+{
+    <p style="font-weight: bold; color: @(ViewBag.RoscoSuperado == true ? "green" : "#b35900");">
+        @ViewBag.RoscoMensaje
+    </p>
+}
 
-<form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
-    <input type="hidden" name="sala" value="5" />
-    <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
-    <label for="respuesta">Ingrese la combinación correcta:</label>
-    <input type="text" id="respuesta" name="respuesta" required>
-    <button type="submit">Enviar</button>
-    @if (ViewBag.Error != null)
-    {
-        <p style="color: red;">@ViewBag.Error</p>
-    }
+<form action='@Url.Action("ResolverRosco", "Escape")' method="post">
+    <div class="rosco-grid" style="display: flex; flex-wrap: wrap; gap: 12px; max-width: 700px;">
+        @foreach (var pregunta in ViewBag.Preguntas)
+        {
+            <div style="border: 1px solid #ccc; border-radius: 8px; padding: 8px; width: 200px;">
+                <strong>@pregunta.Letra.ToUpper()</strong> - @pregunta.Pista
+                <br />
+                <input type="text" name="respuestas" placeholder="Respuesta con @pregunta.Letra" style="width: 90%; margin-top: 5px;" />
+            </div>
+        }
+    </div>
+    <button type="submit" style="margin-top: 15px;">Corregir Rosco</button>
 </form>
 
-<button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
-<div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
-    Tenes que agarrar una letra de cada palabra (la primera letra es de la palabra 1 y así) y encontrar la palabra oculta.
-</div>
-
-<script src="~/js/script.js"></script>
+@if (ViewBag.RoscoSuperado == true)
+{
+    <hr />
+    <h3>¡Superaste el rosco!</h3>
+    <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
+        <input type="hidden" name="sala" value="4" />
+        <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
+        <label for="respuesta">Ingresá la combinación que te reveló el rosco:</label>
+        <input type="text" id="respuesta" name="respuesta" required>
+        <button type="submit">Enviar</button>
+        @if (ViewBag.Error != null)
+        {
+            <p style="color: red;">@ViewBag.Error</p>
+        }
+    </form>
+}
