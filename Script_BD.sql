@@ -83,9 +83,9 @@ GO
 -- real del iframe de educaplay (sala 3) y del juego de monedas (sala 5).
 -- ============================================================
 INSERT INTO [dbo].[Salas] (Codigo_Sala, OrdenSecuencial) VALUES
-('DORADO',   1),  -- Nivel 1: nombre de la ciudad perdida
+('EL DORADO',   1),  -- Nivel 1: nombre de la ciudad perdida
 ('KILDARE',  2),  -- Nivel 2: letras del cartel del surf shop
-('CAMBIAR',  3),  -- Nivel 3: respuesta del juego de educaplay -> reemplazar
-('POGUE',    4),  -- Nivel 4: se revela al superar el rosco
+('DORADO',  3),  -- Nivel 3: respuesta del juego de educaplay -> reemplazar
+('AMERICA DEL SUR',    4),  -- Nivel 4: se revela al superar el rosco
 ('CAMBIAR',  5)   -- Nivel 5: respuesta del juego de monedas -> reemplazar
 GO

@@ -135,10 +135,7 @@ public class EscapeController : Controller
         return View();
     }
 
-    // Válido para los 5 niveles: el código correcto siempre se compara contra
-    // lo que está guardado en la tabla Salas (BD.VerificarRespuesta). Sin redirects: si está mal, se vuelve a mostrar el
-    // mismo nivel con el error; si está bien, se muestra directamente el
-    // siguiente (o Final).
+
     [HttpPost]
     public IActionResult FijarRespuesta(string respuesta, int sala, string nombreUsuario)
     {
@@ -197,7 +194,7 @@ public class EscapeController : Controller
         if (aciertos >= UMBRAL_ROSCO)
         {
             ViewBag.RoscoSuperado = true;
-            ViewBag.RoscoMensaje = $"¡Superaste el rosco con {aciertos} de {RoscoPreguntas.Count} aciertos! Ya podés ingresar el código de la sala para continuar.";
+            ViewBag.RoscoMensaje = $"¡Superaste el rosco con {aciertos} de {RoscoPreguntas.Count} aciertos! Ya podés ingresar el código de la sala para continuar que es AMERICA DEL SUR.";
         }
         else
         {
