@@ -1,4 +1,4 @@
-<h2>Nivel 4 - El Rosco de Outer Banks</h2>
+<h2>Nivel 5- El Rosco de Outer Banks</h2>
 <p>Antes de seguir, los Pogues te ponen a prueba: respondé el rosco. Cada pista empieza con la letra indicada.
    Necesitás al menos <strong>@ViewBag.Umbral de @ViewBag.Total</strong> aciertos para conseguir la combinación de esta sala.
    Si no sabés una palabra, dejá el campo vacío y seguí con la siguiente.</p>
@@ -29,7 +29,7 @@
     <hr />
     <h3>¡Superaste el rosco!</h3>
     <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
-        <input type="hidden" name="sala" value="4" />
+        <input type="hidden" name="sala" value="5" />
         <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
         <label for="respuesta">Ingresá la combinación que te reveló el rosco:</label>
         <input type="text" id="respuesta" name="respuesta" required>
