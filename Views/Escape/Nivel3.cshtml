@@ -1,8 +1,13 @@
 <h2>Nivel 3</h2>
 
-<p>Encontramos un diccionario viejo en la casa de Ward Cameron junto con una carta vieja de Denmark Tanny. Ayudanos a traducirla y encontrar la combinación correcta para poder salir de esta sala. </p>
-     
-<img src="~/images/acertijo/img2.png" alt="Imagen 2">
+<p>Encontramos un diccionario viejo en la casa de Ward Cameron junto con una carta vieja de Denmark Tanny. Ayudanos a traducirla usando el alfabeto que dejaron marcado, y encontrá la combinación correcta para poder salir de esta sala.</p>
+
+<img src="~/images/acertijo/img2.png" alt="Alfabeto cifrado" style="max-width:100%; height:auto;">
+
+<div style="font-size: 2.5em; letter-spacing: 25px; margin: 20px 0; text-align: center;">
+    
+</div>
+<p><em>Pista: el primer símbolo es la tabla de surf, el del medio es el ancla, y el tercero se repite igual que el primero. Buscá esos mismos símbolos en la clave de la imagen para traducir el mensaje.</em></p>
 
 <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
      <input type="hidden" name="sala" value="3" />
@@ -10,16 +15,9 @@
      <label for="respuesta">Ingresá la traducción correcta:</label>
      <input type="text" id="respuesta" name="respuesta" required>
      <button type="submit">Enviar</button>
-     
+
      @if (ViewBag.Error != null)
      {
           <p style="color: red;">@ViewBag.Error</p>
      }
-
-     <button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
-    <div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
-        <p>@*HAY QUE PONER UN TEXTO ACA QUE DIGA LA PISTA*@</p>
-    </div>
-
-    
 </form>
