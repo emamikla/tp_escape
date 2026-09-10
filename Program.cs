@@ -8,6 +8,7 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -20,17 +21,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Juego}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Escape}/{action=Index}/{id?}");
 
 app.Run();
