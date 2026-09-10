@@ -60,6 +60,7 @@ public class EscapeController : Controller
 
     private bool TryGetUsuario(out string nombreUsuario)
     {
+        //lo que hace esto es 
         nombreUsuario = HttpContext.Session.GetString(SESSION_KEY_USUARIO) ?? "";
         return !string.IsNullOrEmpty(nombreUsuario);
     }
@@ -135,8 +136,7 @@ public class EscapeController : Controller
     }
 
     // Válido para los 5 niveles: el código correcto siempre se compara contra
-    // lo que está guardado en la tabla Salas (BD.VerificarRespuesta), nunca
-    // hardcodeado acá. Sin redirects: si está mal, se vuelve a mostrar el
+    // lo que está guardado en la tabla Salas (BD.VerificarRespuesta). Sin redirects: si está mal, se vuelve a mostrar el
     // mismo nivel con el error; si está bien, se muestra directamente el
     // siguiente (o Final).
     [HttpPost]

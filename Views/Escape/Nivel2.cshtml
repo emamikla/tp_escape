@@ -2,23 +2,28 @@
     <title>Escape Game - Nivel 2</title>
 </header>
 <main>
-    <p>Bienvenidos al Kildare Country Surf Shop, donde podes comprar cualquier cosa que necesites para disfrutar del surf. En la imagen de abajo vas a encontrar letras , encontra la combinación correcta y pasa a la siguiente sala. </p>
-    <img src="~/images/Fondos/IMG1.png" alt="Imagen 1">
-   <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
-        <input type="hidden" name="sala" value="2" />
-        <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
-        <label for="respuesta">Ingrese la combinación correcta:</label>
-        <input type="text" id="respuesta" name="respuesta" required>
-        <button type="submit">Enviar</button>
-        @if (ViewBag.Error != null)
-        {
-            <p style="color: red;">@ViewBag.Error</p>
-        }
-    </form>
-    <button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
-    <div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
-        <p>@*HAY QUE PONER UN TEXTO ACA QUE DIGA LA PISTA*@</p>
+    <div class="container">
+        <h1>Escape Game - Nivel 2</h1>
+        <p>Bienvenidos al Kildare County Surf Shop, donde podes comprar cualquier cosa que necesites para disfrutar del surf. En la imagen de abajo vas a encontrar letras sueltas escondidas en la decoración: juntalas en orden y vas a tener la combinación correcta para pasar a la siguiente sala.</p>
+        <img src="~/images/Fondos/IMG1.png" alt="Kildare County Surf Shop" style="max-width:100%; height:auto;">
+
+        <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
+            <input type="hidden" name="sala" value="2" />
+            <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
+            <label for="respuesta">Ingrese la combinación correcta:</label>
+            <input type="text" id="respuesta" name="respuesta" required>
+            <button type="submit">Enviar</button>
+            @if (ViewBag.Error != null)
+            {
+                <p style="color: red;">@ViewBag.Error</p>
+            }
+        </form>
+
+        <button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
+        <div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
+            <p>Las letras que ves apoyadas en los postes del local no están ahí por decoración: leelas en orden y vas a formar el nombre del condado donde está el local.</p>
+        </div>
     </div>
+</main>
 
 <script src="~/js/script.js"></script>
-</main>
