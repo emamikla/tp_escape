@@ -4,10 +4,6 @@
 
 <img src="~/images/acertijo/img2.png" alt="Alfabeto cifrado" style="max-width:100%; height:auto;">
 
-<div style="font-size: 2.5em; letter-spacing: 25px; margin: 20px 0; text-align: center;">
-    <p><em>Pista: el primer símbolo es la tabla de surf, el del medio es el ancla, y el tercero se repite igual que el primero. Buscá esos mismos símbolos en la clave de la imagen para traducir el mensaje.</em></p>
-</div>
-
 <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
      <input type="hidden" name="sala" value="3" />
      <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
@@ -20,3 +16,8 @@
           <p style="color: red;">@ViewBag.Error</p>
      }
 </form>
+
+<button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
+        <div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
+            <p><em>El primer símbolo es la tabla de surf, el del medio es el ancla, y el tercero se repite igual que el primero. Buscá esos mismos símbolos en la clave de la imagen para traducir el mensaje.</em></p>
+        </div>
