@@ -259,9 +259,9 @@ button:hover,
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, minmax(70px, 1fr));
-  gap: 0.8rem;
+  gap: 0.6rem;
   margin: 2rem 0;
-  padding: 1rem;
+  padding: 0.4rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(244, 215, 127, 0.2);
   border-radius: 18px;
@@ -278,15 +278,15 @@ button:hover,
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.25rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(244, 215, 127, 0.12);
 }
 
 .layout img {
-  width: 52px;
-  height: 52px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
   display: block;
 }
@@ -329,13 +329,13 @@ button:hover,
   }
 
   .layout {
-    grid-template-columns: repeat(5, minmax(42px, 1fr));
-    gap: 0.5rem;
-    padding: 0.6rem;
+    grid-template-columns: repeat(5, minmax(52px, 1fr));
+    gap: 0.4rem;
+    padding: 0.25rem;
   }
 
   .layout img {
-    width: 38px;
-    height: 38px;
+    width: 72px;
+    height: 72px;
   }
 }
