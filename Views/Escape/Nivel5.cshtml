@@ -1,7 +1,7 @@
 <h2>Nivel 4</h2>
 <p>Encontramos muchas monedas en la casa de Ward Cameron. Ver cual es diferente y nos ayudará a encontrar el camino. </p>
 
-<section class="layout">
+<section class="layout moneda-grid">
   <div><a href="#"><img src="~/images/monedas/moneda1.png"></a></div>
   <div><a href="#"><img src="~/images/monedas/moneda1.png"></a></div>
   <div><a href="#"><img src="~/images/monedas/moneda1.png"></a></div>
@@ -76,20 +76,7 @@
   <div><a href="#"><img src="~/images/monedas/moneda1.png"></a></div>
 </section>
 
-
 <button type="button" id="mostrarPista" onclick="mostrarPista()">Mostrar pista</button>
-    <div id="pista" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; max-width: 500px;">
-        <p>@*En este nivel no hay pista, arreglatelas*@</p>
-    </div>
-
-        <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
-        <input type="hidden" name="sala" value="5" />
-        <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
-        <label for="respuesta">Ingresá la combinación que te reveló el rosco:</label>
-        <input type="text" id="respuesta" name="respuesta" required>
-        <button type="submit">Enviar</button>
-        @if (ViewBag.Error != null)
-        {
-            <p style="color: red;">@ViewBag.Error</p>
-        }
-    </form>
+<div id="pista" class="pista-box">
+    <p>En este nivel no hay pista, arreglatelas</p>
+</div>

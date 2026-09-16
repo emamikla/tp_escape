@@ -1,20 +1,24 @@
 <header>
     <title>Escape Game</title>
 </header>
-<main> cla
-    <div class="container">
+<main class="inicio">
+    <div class="card">
         <h1>LA BÚSQUEDA DEL DORADO</h1>
-        <p>Bienvenido explorador. Ingresa tu nombre de usuario para comenzar. </p>
+        <p>Bienvenido explorador. Ingresa tu nombre de usuario para comenzar.</p>
         <p>Si ya tenes una partida en curso, podrás continuar desde donde te quedaste al ingresar tu nombre de usuario anterior.</p>
-        <form action = '@Url.Action("FijarseNombreDeUsuario" , "Escape")' method="post">
-            <input type = "text" name = "nombreUsuario" placeholder="Ingrese su nombre de usuario" required />
-            <button type="submit">Iniciar Partida</button>
+
+        <form action='@Url.Action("FijarseNombreDeUsuario", "Escape")' method="post">
+            <input type="text" name="nombreUsuario" placeholder="Ingrese su nombre de usuario" required />
+            <button type="submit">Iniciar partida</button>
         </form>
-        <form action = '@Url.Action("Tutorial", "Escape")' method="post">
-            <button type="submit"> Tutorial</button>
-        </form>
-        <form action = '@Url.Action("Integrantes", "Escape")' method="post">
-            <button type="submit"> Integrantes</button>
-        </form>
+
+        <div class="links">
+            <form action='@Url.Action("Tutorial", "Escape")' method="post">
+                <button type="submit">Tutorial</button>
+            </form>
+            <form action='@Url.Action("Integrantes", "Escape")' method="post">
+                <button type="submit">Integrantes</button>
+            </form>
+        </div>
     </div>
 </main>
