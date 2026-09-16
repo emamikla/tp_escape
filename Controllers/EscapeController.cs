@@ -60,7 +60,6 @@ public class EscapeController : Controller
 
     private bool TryGetUsuario(out string nombreUsuario)
     {
-        //lo que hace esto es 
         nombreUsuario = HttpContext.Session.GetString(SESSION_KEY_USUARIO) ?? "";
         return !string.IsNullOrEmpty(nombreUsuario);
     }
@@ -178,8 +177,8 @@ public class EscapeController : Controller
         int aciertos = 0;
         for (int i = 0; i < RoscoPreguntas.Count; i++)
         {
-            var respuestaJugador = (respuestas != null && i < respuestas.Count) ? respuestas[i] : "";
-            if (string.Equals(respuestaJugador.Trim(), RoscoPreguntas[i].RespuestaCorrecta, StringComparison.OrdinalIgnoreCase))
+            var respuestaJugador = (respuestas != null && i < respuestas.Count && !string.IsNullOrEmpty(respuestas[i])) ? respuestas[i].Trim() : "";
+            if (string.Equals(respuestaJugador, RoscoPreguntas[i].RespuestaCorrecta, StringComparison.OrdinalIgnoreCase))
             {
                 aciertos++;
             }

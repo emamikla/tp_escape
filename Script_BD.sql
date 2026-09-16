@@ -87,5 +87,5 @@ INSERT INTO [dbo].[Salas] (Codigo_Sala, OrdenSecuencial) VALUES
 ('KILDARE',  2),  -- Nivel 2: letras del cartel del surf shop
 ('DORADO',  3),  -- Nivel 3: respuesta del juego de educaplay -> reemplazar
 ('AMERICA DEL SUR',    4),  -- Nivel 4: se revela al superar el rosco
-('CAMBIAR',  5)   -- Nivel 5: respuesta del juego de monedas -> reemplazar
+('MONEDAS',  5)   -- Nivel 5: respuesta del juego de monedas -> reemplazar
 GO
