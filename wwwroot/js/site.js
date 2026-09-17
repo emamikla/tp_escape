@@ -5,11 +5,11 @@
 }
 
 
-let palabraSecreta = "";
+let palabraSecreta = "JOHNB";
 let cantidadIntentos = 0;
 
-function iniciarWordle() {
-    palabraSecreta = "JOHNB";
+function iniciarWordle() 
+{
     actualizarContador();
 }
 
@@ -21,7 +21,7 @@ function actualizarContador() {
 }
 
 function comprobarPalabra() {
-    let intento = document.getElementById("intento").value.toUpperCase();
+    let intento = document.getElementById("intento").value.toUpperCase().trim();
 
     if (intento.length != 5) {
         alert("La palabra debe tener 5 letras.");
@@ -59,7 +59,9 @@ function comprobarPalabra() {
     actualizarContador();
     document.getElementById("intento").value = "";
 
-    if (intento == palabraSecreta) {
+    console.log("Comparando:", intento, "===", palabraSecreta, "->", intento === palabraSecreta);
+
+    if (intento === palabraSecreta) {
         document.getElementById("intento").disabled = true;
         document.querySelector(".wordle-btn").disabled = true;
         document.getElementById("mensaje-ganador").classList.remove("hidden-message");

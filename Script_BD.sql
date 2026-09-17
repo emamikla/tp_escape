@@ -83,7 +83,7 @@ GO
 -- real del iframe de educaplay (sala 3) y del juego de monedas (sala 5).
 -- ============================================================
 INSERT INTO [dbo].[Salas] (Codigo_Sala, OrdenSecuencial) VALUES
-('EL DORADO',   1),  -- Nivel 1: nombre de la ciudad perdida
+('JOHNB',   1),  -- Nivel 1: nombre del personaje principal de Outer Banks
 ('KILDARE',  2),  -- Nivel 2: letras del cartel del surf shop
 ('DORADO',  3),  -- Nivel 3: respuesta del juego de educaplay -> reemplazar
 ('AMERICA DEL SUR',    4),  -- Nivel 4: se revela al superar el rosco

@@ -142,6 +142,8 @@ public class EscapeController : Controller
         {
             nombreUsuario = HttpContext.Session.GetString(SESSION_KEY_USUARIO) ?? "";
         }
+        
+        // Si aún así está vacío, volver al inicio
         if (string.IsNullOrEmpty(nombreUsuario))
         {
             return View("Index");

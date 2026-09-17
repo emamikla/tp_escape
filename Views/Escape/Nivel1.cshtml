@@ -1,7 +1,6 @@
 <header>
     <title>Escape Game - Nivel 1</title>
 </header>
-<main>
     <div class="container">
         <h1>Escape Game - Nivel 1</h1>
         <p>En este juego van a tener que adivinar la palabra secreta de 5 letras. Cada letra será coloreada:</p>
@@ -30,12 +29,11 @@
             <p>La palabra secreta es el nombre del personaje principal de Outer Banks.</p>
         </div>
     </div>
-</main>
 
 <form id="respuestaForm" method="post" action="@Url.Action("FijarRespuesta", "Escape")" class="hidden-form">
     <input type="hidden" name="respuesta" value="JOHNB" />
     <input type="hidden" name="sala" value="1" />
-    <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
+    <input type="hidden" name="nombreUsuario" value="@(ViewBag.NombreUsuario ?? Context.Session.GetString("NombreUsuario") ?? "")" />
 </form>
 
 <script>

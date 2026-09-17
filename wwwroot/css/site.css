@@ -500,36 +500,3 @@ button:hover,
   background: rgba(244, 215, 127, 0.08);
   box-shadow: 0 0 18px rgba(244, 215, 127, 0.12);
 }
-
-@media (max-width: 576px) {
-  .nav {
-    flex-direction: column;
-  }
-
-  .content {
-    padding: 1.2rem;
-  }
-
-  form {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  button,
-  input,
-  textarea,
-  select {
-    width: 100%;
-  }
-
-  .layout {
-    grid-template-columns: repeat(5, minmax(52px, 1fr));
-    gap: 0.4rem;
-    padding: 0.25rem;
-  }
-
-  .layout img {
-    width: 72px;
-    height: 72px;
-  }
-}
