@@ -4,19 +4,40 @@
 <main>
     <div class="container">
         <h1>Escape Game - Nivel 1</h1>
-        <p>¡Bienvenido al primer nivel del juego de escape! Aquí encontrarás tu primera pista para avanzar en el juego. Resuelve el acertijo y encuentra la salida.</p>
-        <p>Bienvenidos a Outer Banks. Necesitamos tu ayuda para encontrar El Dorado. Una antigua leyenda cuenta que, en algún lugar del mundo, se encuentra El Dorado, una ciudad perdida llena de oro y secretos. Durante años, exploradores intentaron encontrarla, pero nadie logró descubrir su ubicación. Ahora, un misterioso mapa acaba de aparecer y parece contener las pistas necesarias para llegar hasta el tesoro. Su misión será seguir las pistas, resolver los enigmas y descubrir El Dorado antes de que sea demasiado tarde.</p>
+        <p>En este juego van a tener que adivinar la palabra secreta de 5 letras. Cada letra será coloreada:</p>
+        <p>
+            <span class="color-green">Verde</span> = letra correcta en la posición correcta<br/>
+            <span class="color-yellow">Amarillo</span> = letra correcta pero en posición incorrecta<br/>
+            <span class="color-red">Rojo</span> = letra no está en la palabra
+        </p>
+        
+        <div class="wordle-container">
+            <div class="wordle-input-group">
+                <input type="text" id="intento" maxlength="5" placeholder="Ingresá 5 letras..." autocomplete="off">
+                <button type="button" onclick="comprobarPalabra()" class="wordle-btn">Probar</button>
+            </div>
+            <div id="resultado" class="wordle-resultado"></div>
+            <div id="contador" class="wordle-contador"></div>
+        </div>
 
-        <form action='@Url.Action("FijarRespuesta", "Escape")' method="post">
-            <input type="hidden" name="sala" value="1" />
-            <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
-            <label for="respuesta">Para comenzar tu travesía, escribí el nombre de la ciudad perdida que estás buscando:</label>
-            <input type="text" id="respuesta" name="respuesta" required>
-            <button type="submit">Enviar</button>
-            @if (ViewBag.Error != null)
-            {
-                <p style="color: red;">@ViewBag.Error</p>
-            }
-        </form>
+        <div id="mensaje-ganador" class="wordle-mensaje hidden-message">
+            <h3>¡Ganaste! 🎉</h3>
+            <p>Has descubierto la palabra secreta. Avanzando al siguiente nivel...</p>
+        </div>
+
+        <button type="button" id="mostrarPista" onclick="mostrarPista()" class="pista-btn">Mostrar pista</button>
+        <div id="pista" class="pista-box hidden-form">
+            <p>La palabra secreta es el nombre del personaje principal de Outer Banks.</p>
+        </div>
     </div>
 </main>
+
+<form id="respuestaForm" method="post" action="@Url.Action("FijarRespuesta", "Escape")" class="hidden-form">
+    <input type="hidden" name="respuesta" value="JOHNB" />
+    <input type="hidden" name="sala" value="1" />
+    <input type="hidden" name="nombreUsuario" value="@ViewBag.NombreUsuario" />
+</form>
+
+<script>
+   iniciarWordle();
+</script>
